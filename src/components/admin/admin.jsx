@@ -8,7 +8,7 @@ import Modal from "@mui/material/Modal";
 import productos from "../../lists/products";
 import { json } from "react-router-dom";
 
-function TablaProductos({ productos, handleIconClick }) {
+function TablaProductos({ productos, handleIconClick, handleDelete }) {
   return productos.map((producto) => (
     <tr key={producto.id}>
       <td className={style.gameItem}>{producto.id}</td>
@@ -26,7 +26,7 @@ function TablaProductos({ productos, handleIconClick }) {
             <EditIcon />
           </button>
           <button
-            onClick={() => handleIconClick(producto)}
+            onClick={() => handleDelete(producto)}
             className={style.btnEdit}
           >
             <DeleteIcon />
@@ -38,7 +38,6 @@ function TablaProductos({ productos, handleIconClick }) {
 }
 
 const Admin = () => {
-
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -68,19 +67,49 @@ const Admin = () => {
     handleOpenModal1();
   };
 
+  const handleDelete = (producto) => {
+    // Filtrar los productos para excluir el producto que se va a eliminar
+    const updatedProducts = products.filter((p) => p.id !== producto.id);
+
+    // Actualizar el estado y el almacenamiento local sin el producto eliminado
+    setProducts(updatedProducts);
+    localStorage.setItem("productos", JSON.stringify(updatedProducts));
+  };
+
   const handleSubmit = (e) => {
     const newProduct = {
       id: products.length + 1,
-      nombre: document.getElementById('nameProduct').value,
-      descripcion: document.getElementById('descriptionProduct').value,
-      categoria: document.getElementById('options').value,
-      resena: document.getElementById('reseñaProduct').value,
-      imagen: '',
-      precio: parseFloat(document.getElementById('precioProduct').value),
+      nombre: document.getElementById("nameProduct").value,
+      descripcion: document.getElementById("descriptionProduct").value,
+      categoria: document.getElementById("options").value,
+      resena: document.getElementById("reseñaProduct").value,
+      imagen: "",
+      precio: parseFloat(document.getElementById("precioProduct").value),
     };
 
     // Actualizar productos en estado y localStorage
     const updatedProducts = [...products, newProduct];
+    setProducts(updatedProducts);
+    localStorage.setItem("productos", JSON.stringify(updatedProducts));
+    handleCloseModal2();
+  };
+
+  const handleEditSubmit = (e) => {
+    // Editar el producto en el estado local
+    const editedProduct = {
+      ...selectedProduct,
+      nombre: document.getElementById("nameProduct").value,
+      descripcion: document.getElementById("descriptionProduct").value,
+      categoria: document.getElementById("options").value,
+      resena: document.getElementById("reseñaProduct").value,
+      precio: parseFloat(document.getElementById("precioProduct").value),
+    };
+
+    const updatedProducts = products.map((product) =>
+      product.id === editedProduct.id ? editedProduct : product
+    );
+
+    // Actualizar productos en el estado y en localStorage
     setProducts(updatedProducts);
     localStorage.setItem("productos", JSON.stringify(updatedProducts));
     handleCloseModal2();
@@ -141,8 +170,10 @@ const Admin = () => {
                 <div className={style.sectionForm}>
                   <div className={style.divider}>
                     <h2>Plataforma: </h2>
-                    <select id="options">
-                      <option disabled>Seleccionar categoria</option>
+                    <select id="options"> 
+                      <option selected disabled value="">
+                        Seleccionar categoria
+                      </option>
                       <option value="Electrónica">Electrónica</option>
                       <option value="Ropa y Calzado">Ropa y Calzado</option>
                       <option value="Libros">Libros</option>
@@ -181,6 +212,7 @@ const Admin = () => {
                 <TablaProductos
                   productos={products}
                   handleIconClick={handleIconClick}
+                  handleDelete={handleDelete}
                 />
               </tbody>
             </table>
@@ -192,30 +224,66 @@ const Admin = () => {
             aria-describedby="modal-modal-description"
             sx={{ backdropFilter: "blur(1px)" }}
           >
-            <div className={style.boxModalG}>
+            <div className={style.boxModalCG}>
               <div className={style.buttonCl}>
                 <button onClick={handleCloseModal1} className={style.btnEdit}>
                   <CloseIcon />
                 </button>
               </div>
-
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  NewPriceGame();
-                }}
-              >
+              <form onSubmit={handleEditSubmit}>
                 <div className={style.sectionForm}>
-                  <h2>Precio actual del juego: </h2>
-                  <input type="text" value={selectedProduct?.precio} disabled />
+                  <h2>Nombre del producto: </h2>
+                  <input
+                    id="nameProduct"
+                    placeholder="Nombre del producto"
+                    type="text"
+                    defaultValue={selectedProduct?.nombre}
+                  />
+                </div>
+
+                <div className={style.sectionForm}>
+                  <h2>Descripcion del producto:</h2>
+                  <textarea
+                    id="descriptionProduct"
+                    placeholder="Escriba la descripcion del producto en este campo"
+                    type="text"
+                    defaultValue={selectedProduct?.descripcion}
+                  />
                 </div>
                 <div className={style.sectionForm}>
-                  <h2>Nuevo precio del juego: </h2>
-                  <input id="newPrice" type="text" placeholder="Nuevo precio" />
+                  <h2>Reseña del producto:</h2>
+                  <textarea
+                    id="reseñaProduct"
+                    placeholder="Escriba la reseña del producto en este campo"
+                    type="text"
+                    defaultValue={selectedProduct?.resena}
+                  />
+                </div>
+                <div className={style.sectionForm}>
+                  <div className={style.divider}>
+                    <h2>Plataforma: </h2>
+                    <select
+                      id="options"
+                      defaultValue={selectedProduct?.categoria}
+                    >
+                      <option value="Electrónica">Electrónica</option>
+                      <option value="Ropa y Calzado">Ropa y Calzado</option>
+                      <option value="Libros">Libros</option>
+                    </select>
+                  </div>
+                  <div className={style.divider}>
+                    <h2>Precio del producto</h2>
+                    <input
+                      id="precioProduct"
+                      placeholder="Ingrese el valor del producto"
+                      type="text"
+                      defaultValue={selectedProduct?.precio}
+                    />
+                  </div>
                 </div>
                 <div className={style.buttonForm}>
-                  <button type="submit" className={style.btnEdit}>
-                    Guardar cambios
+                  <button className={style.btnEdit}>
+                    Guardar cambios del producto
                   </button>
                 </div>
               </form>
