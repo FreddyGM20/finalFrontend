@@ -68,6 +68,8 @@
 
 .inputsContainer input,
 .inputsContainer select {
+  background-color: white;
+  color: black;
   padding: 10px;
 }
 
