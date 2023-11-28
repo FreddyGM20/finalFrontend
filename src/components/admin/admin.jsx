@@ -115,7 +115,7 @@ const Admin = () => {
     // Actualizar productos en el estado y en localStorage
     setProducts(updatedProducts);
     localStorage.setItem("productos", JSON.stringify(updatedProducts));
-    handleCloseModal2();
+    handleCloseModal1();
   };
 
   return (
