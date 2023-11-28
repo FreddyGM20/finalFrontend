@@ -6,7 +6,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Modal from "@mui/material/Modal";
 import productos from "../../lists/products";
-import { json } from "react-router-dom";
 
 function TablaProductos({ productos, handleIconClick, handleDelete }) {
   return productos.map((producto) => (
@@ -40,6 +39,7 @@ function TablaProductos({ productos, handleIconClick, handleDelete }) {
 const Admin = () => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const [openModal1, setOpenModal1] = useState(false);
   const handleOpenModal1 = () => setOpenModal1(true);
@@ -118,6 +118,10 @@ const Admin = () => {
     handleCloseModal1();
   };
 
+  const filteredProducts = products.filter((producto) =>
+  producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
   return (
     <div className={style.main}>
       <Navbar />
@@ -129,7 +133,13 @@ const Admin = () => {
           </button>
           <div className={style.contain}>
             <p>Buscar por nombre: </p>
-            <input type="text" id="inputGame" placeholder="Criterio a buscar" />
+            <input
+              type="text"
+              id="inputProduct"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Producto a buscar"
+            />
           </div>
           <Modal
             open={openModal2}
@@ -173,7 +183,7 @@ const Admin = () => {
                 <div className={style.sectionForm}>
                   <div className={style.divider}>
                     <h2>Plataforma: </h2>
-                    <select id="options"> 
+                    <select id="options">
                       <option selected disabled value="">
                         Seleccionar categoria
                       </option>
@@ -213,7 +223,7 @@ const Admin = () => {
               </thead>
               <tbody id="tablaCuerpo">
                 <TablaProductos
-                  productos={products}
+                  productos={filteredProducts}
                   handleIconClick={handleIconClick}
                   handleDelete={handleDelete}
                 />
