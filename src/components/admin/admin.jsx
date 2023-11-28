@@ -68,6 +68,7 @@ const Admin = () => {
   };
 
   const handleDelete = (producto) => {
+    producto.preventDefault();
     // Filtrar los productos para excluir el producto que se va a eliminar
     const updatedProducts = products.filter((p) => p.id !== producto.id);
 
@@ -77,6 +78,7 @@ const Admin = () => {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const newProduct = {
       id: products.length + 1,
       nombre: document.getElementById("nameProduct").value,
@@ -95,6 +97,7 @@ const Admin = () => {
   };
 
   const handleEditSubmit = (e) => {
+    e.preventDefault();
     // Editar el producto en el estado local
     const editedProduct = {
       ...selectedProduct,
