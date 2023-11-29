@@ -39,7 +39,7 @@ let productos = [
       "Televisor con resolución 4K, HDR y pantalla OLED de 55 pulgadas.",
     categoria: "Electrónica",
     resena: "Calidad de imagen excepcional para tu entretenimiento en casa.",
-    imagen: "/images/img4.avif",
+    imagen: "/images/img4.jpg",
     precio: 1499.99,
     calificacion: 4.0,
   },
