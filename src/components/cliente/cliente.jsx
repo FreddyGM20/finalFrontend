@@ -49,7 +49,16 @@ const ClientePage = () => {
       return cumpleTexto && cumpleCategoria;
     });
 
-    setProductosList(productosFiltrados);
+    // Si no se ha seleccionado ninguna categoría, buscar por nombre en todos los productos
+    if (!categoriaSeleccionada) {
+      const productosFiltradosPorNombre = productos.filter((producto) => {
+        const cumpleTexto = eliminarAcentos(producto.nombre.toLowerCase()).includes(eliminarAcentos(busqueda.toLowerCase()));
+        return cumpleTexto;
+      });
+      setProductosList(productosFiltradosPorNombre);
+    } else {
+      setProductosList(productosFiltrados);
+    }
   };
 
   const handleBusquedaChange = (event) => {
@@ -81,6 +90,7 @@ const ClientePage = () => {
           <div className={style.inputsContainer}>
             <input type="text" placeholder="Buscar productos aquí..." value={busqueda} onChange={handleBusquedaChange}/>
             <select  value={categoriaSeleccionada} onChange={handleCategoriaChange}>
+            <option value="">Todas las categorias</option>
               <option value="Electrónica">Electrónica</option>
               <option value="Ropa y Calzado">Ropa y Calzado</option>
               <option value="Libros">Libros</option>
