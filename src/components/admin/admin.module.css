@@ -14,7 +14,7 @@
   height: 100vh;
   align-items: center;
   gap: 40px;
-  background: white;
+  background-image: url('/images/background.jpg');
   background-size: cover;
   background-position: center;
   padding-bottom: 20px;
@@ -30,7 +30,8 @@
 
 .container h1 {
   margin-left: 20px;
-  color: black;
+  -webkit-text-stroke: 1px #3ca9ff;
+  color: white;
 }
 
 .headerInput {
@@ -56,6 +57,7 @@
   width: 50%;
   height: 100%;
   padding: 10px;
+  color: black;
 }
 
 .headerInput .contain input {
@@ -343,8 +345,8 @@ color:white
     margin-top: 160px;
   }
   .wrapper {
-    height: 65vh;
-    width: 90vw;
+    height: 60vh;
+    width: 94vw;
   }
   .headerInput {
     width: 94%;
@@ -352,6 +354,11 @@ color:white
   }
   .headerInput .contain {
     width: 50%;
+    height: 80%;
+  }
+  .headerInput .contain input{
+    height: 40px;
+    width: 65%;
   }
   .boxModalCG {
     height: 90vh;

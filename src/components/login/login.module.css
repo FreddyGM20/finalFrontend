@@ -1,60 +1,65 @@
 /* src/styles/LoginStyles.css */
 
 .principalContainer {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background: linear-gradient(to right, rgba(135, 206, 250, 1), rgba(255, 235, 59, 1));
-  }
-  
-  .loginContainer {
-    max-width: 400px;
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(to right, rgba(135, 206, 250, 0.9), rgba(255, 235, 59, 0.9));
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .loginTitle {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #000; /* Cambiado a negro */
-  }
-  
-  .loginLabel {
-    display: block;
-    margin-bottom: 10px;
-    color: #000; /* Cambiado a negro */
-  }
-  
-  .loginInput {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.5); /* Cambiado a negro con opacidad */
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .loginButton {
-    width: 100%;
-    padding: 10px;
-    background-color: rgb(71, 71, 71);
-    border: none;
-    border-radius: 5px;
-    color: #fff; /* Cambiado a negro */
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .loginButton:hover {
-    background-color: rgba(255, 235, 59, 0.8);
-    color: #000;
-  }
-  
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("/images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.loginContainer {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  background: rgba(255, 235, 59, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.loginTitle {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #000; /* Cambiado a negro */
+}
+
+.loginLabel {
+  display: block;
+  margin-bottom: 10px;
+  color: #000; /* Cambiado a negro */
+}
+
+.loginInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.5); /* Cambiado a negro con opacidad */
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: white;
+  border: none;
+  color: black;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(71, 71, 71);
+  border: none;
+  border-radius: 5px;
+  color: #fff; /* Cambiado a negro */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loginButton:hover {
+  transition: linear 0.3s;
+  background-color: white;
+  color: #003af6;
+}

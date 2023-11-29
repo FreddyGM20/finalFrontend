@@ -9,19 +9,22 @@
 }
 
 .cuadroAmarillo {
-  background-color: #ffeb3b;
+  background-image: url('/images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 100%;
-  height: 330px;
+  height: 380px;
   position: relative;
   margin-bottom: -1px;
 }
 
 .iconoBolsa {
   position: absolute;
-  top: -55%;
+  top: -50%;
   left: 45%;
-  width: 100px; /* Ajusta el tamaño del icono según sea necesario */
-  height: 100px;
+  
+  width: 90px; /* Ajusta el tamaño del icono según sea necesario */
+  height: 90px;
   z-index: 2; /* Hace que el icono esté sobre el fondo difuminado */
 }
 
@@ -140,14 +143,30 @@
   margin-bottom: 20px;
 }
 
+.botonesContainer{
+  display: flex;
+  height: 35px;
+  gap: 10px;
+}
+
 .botonAzul {
+  display: flex;
   background-color: rgb(61, 116, 150); /* Azul */
   color: #fff;
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  width: 40px;
 }
+.botonAzul:hover {
+  transition: linear 0.3s;
+  background-color: black;
+}
+
 
 .primero {
   margin-right: 2px;
@@ -173,6 +192,7 @@
 .productoCardContent p.categoria {
   color: #007bff; /* Color azul */
   margin-top: 5px;
+  margin-right: 15px;
 }
 
 .productoCardContent p.precio {
@@ -244,7 +264,7 @@
     padding: 40px;
   }
   .iconoBolsa {
-    top: -42%;
+    top: -44%;
     width: 80px; /* Ajusta el tamaño del icono según sea necesario */
     height: 80px;
   }

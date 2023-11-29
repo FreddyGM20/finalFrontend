@@ -4,9 +4,11 @@ import Navbar from "../navbar/navbar";
 import style from "./cliente.module.css";
 
 const ClientePage = () => {
-  const productosPorPagina = 10;
+  const productosPorPagina = 12;
   const [paginaActual, setPaginaActual] = useState(1);
   const [productosList, setProductosList] = useState([]);
+  const [busqueda, setBusqueda] = useState("");
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
 
   useEffect(() => {
     // Intentar cargar productos desde localStorage
@@ -34,6 +36,30 @@ const ClientePage = () => {
 
   const productosPaginaActual = productosList.slice(indiceInicial, indiceFinal);
 
+  const buscarProductos = () => {
+    // Función para eliminar acentos
+    const eliminarAcentos = (texto) => {
+      return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    };
+
+    // Filtrar productos por texto y categoría
+    const productosFiltrados = productos.filter((producto) => {
+      const cumpleTexto = eliminarAcentos(producto.nombre.toLowerCase()).includes(eliminarAcentos(busqueda.toLowerCase()));
+      const cumpleCategoria = categoriaSeleccionada ? producto.categoria === categoriaSeleccionada : true;
+      return cumpleTexto && cumpleCategoria;
+    });
+
+    setProductosList(productosFiltrados);
+  };
+
+  const handleBusquedaChange = (event) => {
+    setBusqueda(event.target.value);
+  };
+
+  const handleCategoriaChange = (event) => {
+    setCategoriaSeleccionada(event.target.value);
+  };
+
   return (
     <div className={style.principalContainer}>
       <Navbar />
@@ -53,14 +79,14 @@ const ClientePage = () => {
         {/* Contenido que se sobrepondrá al amarillo suave */}
         <div className={style.contenido}>
           <div className={style.inputsContainer}>
-            <input type="text" placeholder="Buscar productos aquí..." />
-            <select>
+            <input type="text" placeholder="Buscar productos aquí..." value={busqueda} onChange={handleBusquedaChange}/>
+            <select  value={categoriaSeleccionada} onChange={handleCategoriaChange}>
               <option value="Electrónica">Electrónica</option>
               <option value="Ropa y Calzado">Ropa y Calzado</option>
               <option value="Libros">Libros</option>
               {/* Agrega más opciones según sea necesario */}
             </select>
-            <button className={style.buscarBtn}>Buscar ahora!</button>
+            <button className={style.buscarBtn} onClick={buscarProductos}>Buscar ahora!</button>
           </div>
         </div>
       </div>
