@@ -39,7 +39,7 @@ function TablaProductos({ productos, handleIconClick, handleDelete }) {
 const Admin = () => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const [openModal1, setOpenModal1] = useState(false);
   const handleOpenModal1 = () => setOpenModal1(true);
@@ -87,6 +87,7 @@ const Admin = () => {
       resena: document.getElementById("reseñaProduct").value,
       imagen: "",
       precio: parseFloat(document.getElementById("precioProduct").value),
+      calificacion: 0,
     };
 
     // Actualizar productos en estado y localStorage
@@ -119,8 +120,8 @@ const Admin = () => {
   };
 
   const filteredProducts = products.filter((producto) =>
-  producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
-);
+    producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className={style.main}>

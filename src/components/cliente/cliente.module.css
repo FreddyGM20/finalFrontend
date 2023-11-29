@@ -1,26 +1,35 @@
-/* src/components/ClientePage.css */
+/* Otros estilos */
 
 .principalContainer {
-  background-color: #ffffff;
-  padding-bottom: 50px;
+  background-color: white;
   color: black;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: auto;
 }
 
 .cuadroAmarillo {
   background-color: #ffeb3b;
   width: 100%;
-  height: 300px;
+  height: 330px;
   position: relative;
   margin-bottom: -1px;
 }
 
-/* Estilos para el fondo difuminado */
+.iconoBolsa {
+  position: absolute;
+  top: -55%;
+  left: 45%;
+  width: 100px; /* Ajusta el tamaño del icono según sea necesario */
+  height: 100px;
+  z-index: 2; /* Hace que el icono esté sobre el fondo difuminado */
+}
+
 .fondoDifuminado {
   position: relative;
-  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 65%;
+  width: 70%;
   height: auto;
   background: linear-gradient(
     to right,
@@ -35,13 +44,11 @@
   padding: 50px;
 }
 
-/* Estilos para el contenido que se sobrepondrá al amarillo suave */
 .contenido {
   color: #333;
   text-align: center;
 }
 
-/* Estilos para los inputs */
 .inputsContainer {
   display: flex;
   width: 60vi;
@@ -73,7 +80,6 @@
   padding: 10px;
 }
 
-/* Estilos para el botón */
 .buscarBtn {
   background-color: #333;
   color: #fff;
@@ -90,21 +96,19 @@
   color: #003af6;
 }
 
-/* Otros estilos para el resto de la página, si los tienes */
 .productosContainer {
   display: flex;
-  justify-content: start;
-  align-items: center;
   flex-wrap: wrap;
   gap: 20px;
-  margin: 0 60px;
+  justify-content: start;
+  padding: 50px;
 }
 
 .productoCard {
   border: 1px solid #ddd;
   padding: 15px;
   width: 280px;
-  height: 380px;
+  height: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -114,7 +118,7 @@
   height: 30%;
   object-fit: contain;
 }
-/* Estilos para el contenedor de "Últimos productos en línea" */
+
 .ultimosProductosContainer {
   width: 80%;
   margin: 0 auto;
@@ -123,7 +127,6 @@
   margin-bottom: 0;
 }
 
-/* Estilos para el contenido de "Últimos productos en línea" */
 .contenidoUltimosProductos {
   flex-grow: 1;
   background-color: #ffff; /* Blanco */
@@ -137,7 +140,6 @@
   margin-bottom: 20px;
 }
 
-/* Estilos para los botones azules */
 .botonAzul {
   background-color: rgb(61, 116, 150); /* Azul */
   color: #fff;
@@ -145,31 +147,82 @@
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
-  margin: 2px;
 }
 
-.btns {
-  width: 160px;
-  text-align: center;
-  background: black;
-
-  outline: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1.1em;
-  color: white;
-  font-weight: 500;
+.primero {
+  margin-right: 2px;
 }
-.btns:hover {
-  transition: linear 0.3s;
-  background-color: white;
-  color: #003af6;
+
+/* Nuevos estilos para la tarjeta de producto */
+.productoCardContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+}
+
+.productoCardContent h4 {
+  font-weight: bold;
+}
+
+.productoCardContent p.descripcion {
+  color: #777;
+  font-size: 14px;
+}
+
+.productoCardContent p.categoria {
+  color: #007bff; /* Color azul */
+  margin-top: 5px;
+}
+
+.productoCardContent p.precio {
+  font-weight: bold;
+}
+
+.productoCardContent hr {
+  border: 0.5px solid #ddd;
+  margin: 10px 0;
+}
+
+.resenaContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center; /* Alinea verticalmente los elementos */
+}
+
+.resena {
+  margin-right: 6px; /* Ajusta el espacio entre el texto y la estrella */
+}
+.containerCR {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.iconoEstrella {
+  height: 14px;
+  width: 14px;
+  fill: #ffeb3b;
+}
+
+.categoria {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+}
+
+.precio {
+  color: #333;
+  font-weight: bold;
+  font-size: 20px;
+  vertical-align: baseline;
 }
 
 /* Works on Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 235, 59, 1) transparent;
+  scrollbar-color: rgba(255, 235, 59, 1) white;
 }
 
 /* Works on Chrome, Edge, and Safari */
@@ -186,4 +239,13 @@
   border-radius: 40px;
 }
 
-/* Otros ajustes según sea necesario */
+@media (max-width: 1400px) {
+  .productosContainer {
+    padding: 40px;
+  }
+  .iconoBolsa {
+    top: -42%;
+    width: 80px; /* Ajusta el tamaño del icono según sea necesario */
+    height: 80px;
+  }
+}
