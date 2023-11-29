@@ -68,7 +68,6 @@ const Admin = () => {
   };
 
   const handleDelete = (producto) => {
-    producto.preventDefault();
     // Filtrar los productos para excluir el producto que se va a eliminar
     const updatedProducts = products.filter((p) => p.id !== producto.id);
 
