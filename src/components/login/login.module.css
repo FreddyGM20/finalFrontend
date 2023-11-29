@@ -9,7 +9,7 @@
   width: 100vw;
   background-image: url("/images/background.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100%;
 }
 
 .loginContainer {
