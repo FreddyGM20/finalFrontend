@@ -143,7 +143,7 @@ const ClientePage = () => {
       <div className={style.productosContainer}>
         {productosPaginaActual.map((producto) => (
           <div key={producto.id} className={style.productoCard}>
-            <img src={producto.imagen} alt={producto.nombre} />
+            {producto.imagen !== '' && <img src={producto.imagen} alt={producto.nombre} />}
             <div className={style.productoCardContent}>
               <h4>{producto.nombre}</h4>
               <p className={style.descripcion}>{producto.descripcion}</p>
