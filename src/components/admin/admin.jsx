@@ -84,7 +84,7 @@ const Admin = () => {
       descripcion: document.getElementById("descriptionProduct").value,
       categoria: document.getElementById("options").value,
       resena: document.getElementById("reseñaProduct").value,
-      imagen: "",
+      imagen: document.getElementById("imagenProduct").value,
       precio: parseFloat(document.getElementById("precioProduct").value),
       calificacion: 0,
     };
@@ -105,6 +105,7 @@ const Admin = () => {
       descripcion: document.getElementById("descriptionProduct").value,
       categoria: document.getElementById("options").value,
       resena: document.getElementById("reseñaProduct").value,
+      imagen: document.getElementById("imagenProduct").value,
       precio: parseFloat(document.getElementById("precioProduct").value),
     };
 
@@ -201,6 +202,14 @@ const Admin = () => {
                     />
                   </div>
                 </div>
+                <div className={style.sectionForm}>
+                  <h2>URL de la imagen:</h2>
+                  <input
+                    id="imagenProduct"
+                    placeholder="Ingrese la URL de la imagen"
+                    type="text"
+                  />
+                </div>
                 <div className={style.buttonForm}>
                   <button className={style.btnEdit}>Guardar el producto</button>
                 </div>
@@ -293,6 +302,15 @@ const Admin = () => {
                       defaultValue={selectedProduct?.precio}
                     />
                   </div>
+                </div>
+                <div className={style.sectionForm}>
+                  <h2>URL de la imagen:</h2>
+                  <input
+                    id="imagenProduct"
+                    placeholder="Ingrese la URL de la imagen"
+                    type="text"
+                    defaultValue={selectedProduct?.imagen}
+                  />
                 </div>
                 <div className={style.buttonForm}>
                   <button className={style.btnEdit}>
