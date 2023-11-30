@@ -4,7 +4,7 @@ import Navbar from "../navbar/navbar";
 import style from "./cliente.module.css";
 
 const ClientePage = () => {
-  const productosPorPagina = 12;
+  const productosPorPagina = 10;
   const [paginaActual, setPaginaActual] = useState(1);
   const [productosList, setProductosList] = useState([]);
   const [busqueda, setBusqueda] = useState("");
